@@ -73,7 +73,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EdG-kz-RBD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2009" y="167"/>
+            <point key="canvasLocation" x="982" y="134"/>
         </scene>
         <!--Item-->
         <scene sceneID="chm-KP-LPL">
@@ -98,7 +98,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OEP-6A-QrA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2009" y="889"/>
+            <point key="canvasLocation" x="982" y="880"/>
         </scene>
         <!--Item-->
         <scene sceneID="C0T-I5-lQt">
@@ -119,10 +119,10 @@
             </objects>
             <point key="canvasLocation" x="982" y="-564"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Custom Tab Bar-->
         <scene sceneID="KRq-Hu-LVX">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="zqT-lE-IRk" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="zqT-lE-IRk" customClass="CustomTabBar" customModule="MovieFlix" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KLE-YZ-l3T">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -163,7 +163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="crY-Gs-dZy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2009" y="-1261"/>
+            <point key="canvasLocation" x="982" y="-1255"/>
         </scene>
     </scenes>
 </document>
