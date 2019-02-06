@@ -21,14 +21,18 @@ class CustomTabBar: UITabBarController {
         //El tabBar será de color negro
         tabBar.barTintColor = UIColor.black
         var n = 0
-        for img in imagenes {
+        for _ in imagenes {
             //obtenemos el item del tabbar
             tabBarItem = self.tabBar.items![n]
             //le establecemos la imágen normal
-            tabBarItem.image = imagenes[n].withRenderingMode(.automatic)
+            tabBarItem.image = imagenes[n].withRenderingMode(.alwaysOriginal)
             //le establecemos la imágen para cuando esté seleccionada
-            tabBarItem.selectedImage = imagenesSel[n].withRenderingMode(.automatic)
+            tabBarItem.selectedImage = imagenesSel[n].withRenderingMode(.alwaysOriginal)
             n = n+1
+            //le quitamos el texto
+            tabBarItem.title = ""
+            //posicionamos los iconos más abajo
+            tabBarItem.imageInsets = UIEdgeInsets(top: 10, left: 0, bottom: -10, right: 0)
             
         }
     }

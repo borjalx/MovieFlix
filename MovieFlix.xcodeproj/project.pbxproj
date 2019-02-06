@@ -15,6 +15,10 @@
 		242EEE392201EA4C008DE446 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 242EEE372201EA4C008DE446 /* LaunchScreen.storyboard */; };
 		242EEE442201EA4C008DE446 /* MovieFlixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242EEE432201EA4C008DE446 /* MovieFlixTests.swift */; };
 		242EEE4F2201EA4C008DE446 /* MovieFlixUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242EEE4E2201EA4C008DE446 /* MovieFlixUITests.swift */; };
+		24C4ED44220B25F100167120 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C4ED43220B25F100167120 /* Movie.swift */; };
+		24C4ED46220B26E100167120 /* movies.csv in Resources */ = {isa = PBXBuildFile; fileRef = 24C4ED45220B26E100167120 /* movies.csv */; };
+		24C4ED49220B2ECA00167120 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C4ED48220B2ECA00167120 /* Tools.swift */; };
+		24C4ED4C220B30FE00167120 /* csv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C4ED4B220B30FE00167120 /* csv.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		242EEE4A2201EA4C008DE446 /* MovieFlixUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieFlixUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		242EEE4E2201EA4C008DE446 /* MovieFlixUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFlixUITests.swift; sourceTree = "<group>"; };
 		242EEE502201EA4C008DE446 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24C4ED43220B25F100167120 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		24C4ED45220B26E100167120 /* movies.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = movies.csv; sourceTree = "<group>"; };
+		24C4ED48220B2ECA00167120 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		24C4ED4B220B30FE00167120 /* csv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = csv.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,8 @@
 		242EEE2D2201EA42008DE446 /* MovieFlix */ = {
 			isa = PBXGroup;
 			children = (
+				24C4ED4A220B30E700167120 /* Libraries */,
+				24C4ED47220B2EAF00167120 /* Tools */,
 				240B48EB220A11EB0028D056 /* CustomTabBar.swift */,
 				242EEE2E2201EA42008DE446 /* AppDelegate.swift */,
 				242EEE302201EA42008DE446 /* ViewController.swift */,
@@ -106,6 +116,7 @@
 				242EEE352201EA4B008DE446 /* Assets.xcassets */,
 				242EEE372201EA4C008DE446 /* LaunchScreen.storyboard */,
 				242EEE3A2201EA4C008DE446 /* Info.plist */,
+				24C4ED43220B25F100167120 /* Movie.swift */,
 			);
 			path = MovieFlix;
 			sourceTree = "<group>";
@@ -126,6 +137,23 @@
 				242EEE502201EA4C008DE446 /* Info.plist */,
 			);
 			path = MovieFlixUITests;
+			sourceTree = "<group>";
+		};
+		24C4ED47220B2EAF00167120 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				24C4ED48220B2ECA00167120 /* Tools.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		24C4ED4A220B30E700167120 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				24C4ED45220B26E100167120 /* movies.csv */,
+				24C4ED4B220B30FE00167120 /* csv.swift */,
+			);
+			path = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,6 +263,7 @@
 				242EEE392201EA4C008DE446 /* LaunchScreen.storyboard in Resources */,
 				242EEE362201EA4B008DE446 /* Assets.xcassets in Resources */,
 				242EEE342201EA42008DE446 /* Main.storyboard in Resources */,
+				24C4ED46220B26E100167120 /* movies.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,9 +288,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24C4ED4C220B30FE00167120 /* csv.swift in Sources */,
 				242EEE312201EA42008DE446 /* ViewController.swift in Sources */,
 				240B48EC220A11EB0028D056 /* CustomTabBar.swift in Sources */,
+				24C4ED44220B25F100167120 /* Movie.swift in Sources */,
 				242EEE2F2201EA42008DE446 /* AppDelegate.swift in Sources */,
+				24C4ED49220B2ECA00167120 /* Tools.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

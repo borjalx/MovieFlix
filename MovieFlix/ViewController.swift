@@ -10,9 +10,23 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    //Array de películas
+    var movies:[Movie] = [Movie]()
+    //obtenemos las tools
+    var tools:Tools = Tools()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        tools.parseCSVMovie(movies: &movies)
+        
+        printMovies()
+    }
+    
+    func printMovies() {
+        for movie in movies {
+            print(movie)
+        }
     }
 
 
