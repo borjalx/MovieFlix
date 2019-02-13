@@ -1,5 +1,6 @@
 
 import Foundation
+import UIKit
 
 class Movie:CustomStringConvertible{
     
@@ -22,7 +23,7 @@ class Movie:CustomStringConvertible{
     }
     
     public var description:String {
-        return "Movie -> name : \(name) | genre : \(genre) | year \(year)"
+        return "Movie -> name : \(name) | genre : \(genre) | year : \(year) | url : \(image)"
     }
     
 }

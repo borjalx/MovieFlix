@@ -16,11 +16,11 @@ class Tools{
             for row in csv.rows {
                 let movie = Movie(name: row["Film"]! != "" ? row["Film"]! : "null",
                                   genre: row["Genre"]! != "" ? row["Genre"]! : "null",
-                                  studio: row["Lead Studio"]! != "" ? row["Lead Studio"]! : "null",
-                                  audienceScore: row["Audience score %"]! != "" ? row["Audience score %"]! : "null" ,
-                                  rottenTomatoesScore: row["Rotten Tomatoes %"]! != "" ? row["Rotten Tomatoes %"]! : "null",
+                                  studio: row["LeadStudio"]! != "" ? row["LeadStudio"]! : "null",
+                                  audienceScore: row["Audiencescore"]! != "" ? row["Audiencescore"]! : "null" ,
+                                  rottenTomatoesScore: row["RottenTomatoes"]! != " " ? row["RottenTomatoes"]! : "null",
                                   year: row["Year"]! != "" ? row["Year"]! : "null",
-                                  image: "null")
+                                  image: row["Image"]! != "" ? row["Image"]! : "null")
                 movies.append(movie)
             }
             
