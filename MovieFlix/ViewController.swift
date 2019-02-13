@@ -68,16 +68,47 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         //obtenemos la información del csv
         tools.parseCSVMovie(movies: &movies)
         //imptimimos la información de las peliculas por consola
-        printMovies()
+        //printMovies()
         //delgemos el tableView
         tableView.delegate = self
         tableView.dataSource = self
     }
     
+    //Función que imprime información sobre las películas
     func printMovies() {
         for movie in movies {
             print(movie)
         }
+    }
+    
+    //Al hacer click en la Movie nos lleva a una página con su información
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let mcs = storyboard!.instantiateViewController(withIdentifier: "detalleMovie") as! MovieCellSegue
+        
+        //imprimimos el nombre
+        print(movies[indexPath.row].name)
+        
+        //asiganamos los valores de tipo texto
+        mcs.lblAS = mcs.lblAS + movies[indexPath.row].audienceScore
+        mcs.lblRTS = mcs.lblRTS + movies[indexPath.row].rottenTomatoesScore
+        mcs.lblStudio = mcs.lblStudio + movies[indexPath.row].studio
+        mcs.lblYear = mcs.lblYear + movies[indexPath.row].year
+        mcs.lblGenre = mcs.lblGenre + movies[indexPath.row].genre
+        mcs.lblTitle = movies[indexPath.row].name
+        
+        //le asignamos la imagen
+        if let url = URL(string: movies[indexPath.row].image){
+            var url:URL = URL(string: "https://i.imgur.com/W6IUotA.jpg")!
+            let data = try? Data(contentsOf: url)
+            mcs.imgM = UIImage(data: data!)!
+        }
+        
+        //texto especial para el botón de volver
+        let backItem = UIBarButtonItem()
+        backItem.title = "Go back"
+        navigationItem.backBarButtonItem = backItem
+        
+        self.navigationController?.pushViewController(mcs, animated: true)
     }
 
 
