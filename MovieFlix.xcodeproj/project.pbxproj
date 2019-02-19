@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		240B48EC220A11EB0028D056 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240B48EB220A11EB0028D056 /* CustomTabBar.swift */; };
+		241541DB221C8878004E9EDD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241541DA221C8878004E9EDD /* User.swift */; };
 		242EEE2F2201EA42008DE446 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242EEE2E2201EA42008DE446 /* AppDelegate.swift */; };
 		242EEE312201EA42008DE446 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242EEE302201EA42008DE446 /* ViewController.swift */; };
 		242EEE342201EA42008DE446 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 242EEE322201EA42008DE446 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		240B48EB220A11EB0028D056 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		241541DA221C8878004E9EDD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		242EEE2B2201EA42008DE446 /* MovieFlix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieFlix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		242EEE2E2201EA42008DE446 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		242EEE302201EA42008DE446 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				24C4ED43220B25F100167120 /* Movie.swift */,
 				244815C922145FB600782602 /* CustomCellMovies.swift */,
 				246A99AB2214776100938E04 /* MovieCellSegue.swift */,
+				241541DA221C8878004E9EDD /* User.swift */,
 			);
 			path = MovieFlix;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				24C4ED4C220B30FE00167120 /* csv.swift in Sources */,
 				242EEE312201EA42008DE446 /* ViewController.swift in Sources */,
 				240B48EC220A11EB0028D056 /* CustomTabBar.swift in Sources */,
+				241541DB221C8878004E9EDD /* User.swift in Sources */,
 				24C4ED44220B25F100167120 /* Movie.swift in Sources */,
 				242EEE2F2201EA42008DE446 /* AppDelegate.swift in Sources */,
 				24C4ED49220B2ECA00167120 /* Tools.swift in Sources */,

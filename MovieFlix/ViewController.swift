@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Array de películas
 var movies:[Movie] = [Movie]()
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
@@ -29,11 +30,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
     }
     
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let celda = tableView.dequeueReusableCell(withIdentifier: "celda", for: indexPath) as! CustomCellMovies
         
         
-        //Obtenemos la imagen
+        //Obtenemos la imagen - por ahora mostramos una general
         if let url = URL(string: movies[indexPath.row].image){
             var url:URL = URL(string: "https://i.imgur.com/W6IUotA.jpg")!
             let data = try? Data(contentsOf: url)
@@ -47,8 +50,34 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         //Obtenemos el título
         celda.lblTitulo.text = movies[indexPath.row].name
         
+        //Añadimos el icono dependiendo de si ha visto la peli
+        if !movies[indexPath.row].watched {
+            celda.btnWtchd.setImage(UIImage(named: "noVista")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            
+        } else {
+            celda.btnWtchd.setImage(UIImage(named: "vista")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        //Añadimos como tag del botón el nº de fila
+        celda.btnWtchd.tag = indexPath.row
+        //Añadimos el evento click de visto/no visto
+        celda.btnWtchd.addTarget(self, action: #selector(clickWatched), for: .touchUpInside)
+        
+        
         return celda
     }
+    
+    //Función asociada al clik de vista/no vista
+    @objc func clickWatched(sender: UIButton){
+        if !movies[sender.tag].watched {
+            movies[sender.tag].watched = true
+            sender.setImage(UIImage(named: "vista")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }else{
+            movies[sender.tag].watched = false
+            sender.setImage(UIImage(named: "noVista")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        print("Película \(movies[sender.tag].name) vista : \(movies[sender.tag].watched)")
+    }
+    
     
     //altura del cell
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -57,7 +86,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
 
     @IBOutlet weak var tableView: UITableView!
-    //Array de películas
     
     //obtenemos las tools
     var tools:Tools = Tools()
@@ -96,7 +124,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         mcs.lblGenre = mcs.lblGenre + movies[indexPath.row].genre
         mcs.lblTitle = movies[indexPath.row].name
         
-        //le asignamos la imagen
+        //le asignamos la imagen - por ahora mostramos una general
         if let url = URL(string: movies[indexPath.row].image){
             var url:URL = URL(string: "https://i.imgur.com/W6IUotA.jpg")!
             let data = try? Data(contentsOf: url)
