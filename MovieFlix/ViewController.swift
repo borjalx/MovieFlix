@@ -10,6 +10,8 @@ import UIKit
 
 //Array de películas
 var movies:[Movie] = [Movie]()
+//Usuario auxiliar
+var mainUser:User = User(name: "Borch", username:"leBorch1", about: "En verdad me llamo Borja, pero Borch me parecía mas cool", picture: "genio", watchedMvs: [])
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
@@ -51,7 +53,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         celda.lblTitulo.text = movies[indexPath.row].name
         
         //Añadimos el icono dependiendo de si ha visto la peli
-        if !movies[indexPath.row].watched {
+        if !movies[indexPath.row].userWatched(user: mainUser) {
             celda.btnWtchd.setImage(UIImage(named: "noVista")?.withRenderingMode(.alwaysOriginal), for: .normal)
             
         } else {
@@ -68,14 +70,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     //Función asociada al clik de vista/no vista
     @objc func clickWatched(sender: UIButton){
-        if !movies[sender.tag].watched {
-            movies[sender.tag].watched = true
+        if !movies[sender.tag].userWatched(user: mainUser) {
+            //ELIMINAR - movies[sender.tag].watched = true
+            mainUser.watchedMvs.append(movies[sender.tag])
             sender.setImage(UIImage(named: "vista")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            print("Película \(movies[sender.tag].name) vista")
         }else{
-            movies[sender.tag].watched = false
+            //ELIMINAR - movies[sender.tag].watched = false
+            mainUser.watchedMvs.remove(at: sender.tag)
             sender.setImage(UIImage(named: "noVista")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            print("Película \(movies[sender.tag].name) NO vista")
         }
-        print("Película \(movies[sender.tag].name) vista : \(movies[sender.tag].watched)")
+        
     }
     
     
