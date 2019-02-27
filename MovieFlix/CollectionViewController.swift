@@ -47,7 +47,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         //texto especial para el botón de volver
         let backItem = UIBarButtonItem()
         backItem.title = "Go back"
-        backItem.tintColor = UIColor.black
+        backItem.tintColor = UIColor.white
         navigationItem.backBarButtonItem = backItem
         
         self.navigationController?.pushViewController(mcs, animated: true)
@@ -89,7 +89,8 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //modificamos el color de fondo del navigationController
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
         //likedMovies = mainUser.watchedMvs
         //print("likedMovies = all movies")
         print("likedMovies count = \(likedMovies.count)")
@@ -116,11 +117,8 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         likedMovies = mainUser.watchedMvs
-        /*print("likedMovies = main user watched movies")
-        print("likedMovies count = \(likedMovies.count)")*/
         
         collectionView.reloadData()
-        print("viewWillAppear")
         
     }
     

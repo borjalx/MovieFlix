@@ -113,7 +113,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //modificamos el color de fondo del navigationController
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         //obtenemos la información del csv
         tools.parseCSVMovie(movies: &movies)
         //imptimimos la información de las peliculas por consola
@@ -149,7 +151,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         //texto especial para el botón de volver
         let backItem = UIBarButtonItem()
         backItem.title = "Go back"
-        backItem.tintColor = UIColor.black
+        backItem.tintColor = UIColor.white
         navigationItem.backBarButtonItem = backItem
         
         self.navigationController?.pushViewController(mcs, animated: true)
