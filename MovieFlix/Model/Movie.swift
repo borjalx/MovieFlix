@@ -40,15 +40,18 @@ class Movie:CustomStringConvertible, Equatable{
         lhs.image == rhs.image*/
     }
     
-    func userWatched(user: User) -> (Bool){
-        var liked = false
+    func userWatched(user: User) -> (Int){
+        //var liked = false
+        var pos = -1
+        var x = 0
         for movie in user.watchedMvs {
             if(movie == self){
-                liked = true
+                pos = x
             }
+            x=x+1
         }
         
-        return liked
+        return pos
     }
     
 }

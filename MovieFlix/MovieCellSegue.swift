@@ -17,8 +17,12 @@ class MovieCellSegue: UIViewController {
     @IBOutlet weak var movieStudio: UILabel!
     @IBOutlet weak var movieRTS: UILabel!
     @IBOutlet weak var movieAS: UILabel!
+    @IBOutlet weak var movieW: UIButton!
+    
+    var peli:Movie?
     
     var imgM: UIImage = UIImage()
+    var imgW: UIImage = UIImage()
     var lblTitle: String = ""
     var lblGenre: String = "Genre: "
     var lblYear: String = "Year: "
@@ -29,13 +33,22 @@ class MovieCellSegue: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        movieImg.image = imgM
-        movieTitle.text = lblTitle
-        movieGenre.text = lblGenre
-        movieYear.text = lblYear
-        movieStudio.text = lblStudio
-        movieRTS.text = lblRTS
-        movieAS.text = lblAS
+        tools.getImage(imagenURL: (peli?.image)!) { (imgRecovered) -> Void in
+            if let imagen = imgRecovered {
+                DispatchQueue.main.async {
+                    self.movieImg.image = imagen
+                    return
+                }
+            }
+        }
+        movieTitle.text = peli?.name
+        movieGenre.text = "Genre: \(peli?.genre ?? "No genre found")"
+        movieYear.text = "Year: \(peli?.year ?? "No year found")"
+        movieStudio.text = "Studio: \(peli?.studio ?? "No studio found")"
+        movieRTS.text = "RottenTomatoes Score: \(peli?.rottenTomatoesScore ?? "No score found")"
+        movieAS.text = "Audience Score: \(peli?.audienceScore ?? "No score found")"
+        movieW.setImage(imgW.withRenderingMode(.alwaysOriginal), for: .normal)
+        
     }
     
 

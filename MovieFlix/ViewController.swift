@@ -8,6 +8,9 @@
 
 import UIKit
 
+//Tools
+//obtenemos las tools
+var tools:Tools = Tools()
 //Array de películas
 var movies:[Movie] = [Movie]()
 //Usuario auxiliar
@@ -39,11 +42,22 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         
         //Obtenemos la imagen - por ahora mostramos una general
+        
+         tools.getImage(imagenURL: movies[indexPath.row].image) { (imgRecovered) -> Void in
+         if let imagen = imgRecovered {
+         DispatchQueue.main.async {
+         celda.ivImagen.image = imagen
+         return
+         }
+         }
+         }
+        /*
         if let url = URL(string: movies[indexPath.row].image){
             var url:URL = URL(string: "https://i.imgur.com/W6IUotA.jpg")!
             let data = try? Data(contentsOf: url)
         celda.ivImagen.image = UIImage(data: data!)
         }
+        */
         
         //Obtenemos la putnuacion de RT
         celda.lblRTS.text = movies[indexPath.row].rottenTomatoesScore
@@ -53,7 +67,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         celda.lblTitulo.text = movies[indexPath.row].name
         
         //Añadimos el icono dependiendo de si ha visto la peli
-        if !movies[indexPath.row].userWatched(user: mainUser) {
+        if movies[indexPath.row].userWatched(user: mainUser) == -1 {
             celda.btnWtchd.setImage(UIImage(named: "noVista")?.withRenderingMode(.alwaysOriginal), for: .normal)
             
         } else {
@@ -70,14 +84,15 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     //Función asociada al clik de vista/no vista
     @objc func clickWatched(sender: UIButton){
-        if !movies[sender.tag].userWatched(user: mainUser) {
+        let n = movies[sender.tag].userWatched(user: mainUser)
+        if n == -1 {
             //ELIMINAR - movies[sender.tag].watched = true
             mainUser.watchedMvs.append(movies[sender.tag])
             sender.setImage(UIImage(named: "vista")?.withRenderingMode(.alwaysOriginal), for: .normal)
             print("Película \(movies[sender.tag].name) vista")
         }else{
             //ELIMINAR - movies[sender.tag].watched = false
-            mainUser.watchedMvs.remove(at: sender.tag)
+            mainUser.watchedMvs.remove(at: n)
             sender.setImage(UIImage(named: "noVista")?.withRenderingMode(.alwaysOriginal), for: .normal)
             print("Película \(movies[sender.tag].name) NO vista")
         }
@@ -94,7 +109,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet weak var tableView: UITableView!
     
     //obtenemos las tools
-    var tools:Tools = Tools()
+    //var tools:Tools = Tools()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,24 +137,19 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         //imprimimos el nombre
         print(movies[indexPath.row].name)
         
-        //asiganamos los valores de tipo texto
-        mcs.lblAS = mcs.lblAS + movies[indexPath.row].audienceScore
-        mcs.lblRTS = mcs.lblRTS + movies[indexPath.row].rottenTomatoesScore
-        mcs.lblStudio = mcs.lblStudio + movies[indexPath.row].studio
-        mcs.lblYear = mcs.lblYear + movies[indexPath.row].year
-        mcs.lblGenre = mcs.lblGenre + movies[indexPath.row].genre
-        mcs.lblTitle = movies[indexPath.row].name
-        
-        //le asignamos la imagen - por ahora mostramos una general
-        if let url = URL(string: movies[indexPath.row].image){
-            var url:URL = URL(string: "https://i.imgur.com/W6IUotA.jpg")!
-            let data = try? Data(contentsOf: url)
-            mcs.imgM = UIImage(data: data!)!
+        //asginamos la información de la peli a una Movie auxiliar
+        mcs.peli = movies[indexPath.row]
+        //asignamos imágen de vista/no vista
+        if movies[indexPath.row].userWatched(user: mainUser) != -1 {
+            mcs.imgW = UIImage(named: "vista")!
+        }else{
+            mcs.imgW = UIImage(named: "noVista")!
         }
         
         //texto especial para el botón de volver
         let backItem = UIBarButtonItem()
         backItem.title = "Go back"
+        backItem.tintColor = UIColor.black
         navigationItem.backBarButtonItem = backItem
         
         self.navigationController?.pushViewController(mcs, animated: true)

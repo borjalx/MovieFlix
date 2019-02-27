@@ -11,15 +11,49 @@ import UIKit
 class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var likedMovies:[Movie] = []
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblUsername: UILabel!
+    @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var ivUser: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     //número de items
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        print("likedmovies count : \(likedMovies.count)")
+
         return likedMovies.count
         
+    }
+    
+    //mostrar más información de la palícula
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //let mcs = storyboard!.instantiateViewController(withIdentifier: "detalleMovie") as! MovieCellSegue
+        
+        //let mcs = collectionView.dequeueReusableCell(withReuseIdentifier: "detalle", for: <#T##IndexPath#>) as! Movi
+        
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mcs = storyboard.instantiateViewController(withIdentifier: "detalleMovie") as! MovieCellSegue
+        
+    
+        //let mcs = collectionView.dequeueReusableCell(withReuseIdentifier: "cvitem", for: indexPath) as! MovieCollectionViewCell
+        //asginamos la información de la peli a una Movie auxiliar
+        mcs.peli = likedMovies[indexPath.row]
+        //asignamos imágen de vista/no vista
+        if movies[indexPath.row].userWatched(user: mainUser) != -1 {
+            mcs.imgW = UIImage(named: "noVista")!
+        }else{
+            mcs.imgW = UIImage(named: "vista")!
+        }
+        //texto especial para el botón de volver
+        let backItem = UIBarButtonItem()
+        backItem.title = "Go back"
+        backItem.tintColor = UIColor.black
+        navigationItem.backBarButtonItem = backItem
+        
+        self.navigationController?.pushViewController(mcs, animated: true)
+        
+        //imprimimos el nombre
+        print(likedMovies[indexPath.row].name)
     }
     
     //efecto de fade in
@@ -28,10 +62,13 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cvitem", for: indexPath) as! MovieCollectionViewCell
         //Obtenemos la imagen - por ahora mostramos una general
-        if let url = URL(string: likedMovies[indexPath.row].image){
-            var url:URL = URL(string: "https://i.imgur.com/W6IUotA.jpg")!
-            let data = try? Data(contentsOf: url)
-            cell.ivWM.image = UIImage(data: data!)
+        tools.getImage(imagenURL: likedMovies[indexPath.row].image) { (imgRecovered) -> Void in
+            if let imagen = imgRecovered {
+                DispatchQueue.main.async {
+                    cell.ivWM.image = imagen
+                    return
+                }
+            }
         }
         
         //asginamos texo el label
@@ -53,13 +90,38 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        likedMovies = movies//mainUser.watchedMvs
+        //likedMovies = mainUser.watchedMvs
+        //print("likedMovies = all movies")
+        print("likedMovies count = \(likedMovies.count)")
         //le asginamos valores a los componentes que tienen la información del user
         ivUser.image = UIImage(named: mainUser.picture)
+        //ImageView de la imágen del usuario con bordes redondos
+        ivUser.layer.borderWidth = 1
+        ivUser.layer.masksToBounds = false
+        ivUser.layer.borderColor = UIColor.black.cgColor
+        ivUser.layer.cornerRadius = ivUser.frame.height/2
+        ivUser.clipsToBounds = true
+        //información del user
+        lblName.text = mainUser.name
+        lblUsername.text = mainUser.username
+        lblDescription.text = mainUser.about
 
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        collectionView.backgroundColor = UIColor.gray
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        likedMovies = mainUser.watchedMvs
+        /*print("likedMovies = main user watched movies")
+        print("likedMovies count = \(likedMovies.count)")*/
+        
+        collectionView.reloadData()
+        print("viewWillAppear")
+        
     }
     
 
