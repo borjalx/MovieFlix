@@ -23,6 +23,7 @@
 		243E71B522204B8F0049BF6B /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243E71B422204B8F0049BF6B /* MovieCollectionViewCell.swift */; };
 		244815C822145CDA00782602 /* movies_dani.csv in Resources */ = {isa = PBXBuildFile; fileRef = 244815C722145CDA00782602 /* movies_dani.csv */; };
 		244815CA22145FB600782602 /* CustomCellMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244815C922145FB600782602 /* CustomCellMovies.swift */; };
+		24590C3022298594007A31CD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24590C2F22298594007A31CD /* SearchViewController.swift */; };
 		246A99AC2214776100938E04 /* MovieCellSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246A99AB2214776100938E04 /* MovieCellSegue.swift */; };
 		24C4ED44220B25F100167120 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C4ED43220B25F100167120 /* Movie.swift */; };
 		24C4ED46220B26E100167120 /* movies2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 24C4ED45220B26E100167120 /* movies2.csv */; };
@@ -72,6 +73,7 @@
 		244815C922145FB600782602 /* CustomCellMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellMovies.swift; sourceTree = "<group>"; };
 		244815CC221465F100782602 /* BebasNeue-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Regular.ttf"; sourceTree = "<group>"; };
 		244815CD221465F100782602 /* BebasNeue-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Regular.otf"; sourceTree = "<group>"; };
+		24590C2F22298594007A31CD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		246A99AB2214776100938E04 /* MovieCellSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellSegue.swift; sourceTree = "<group>"; };
 		24C4ED43220B25F100167120 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		24C4ED45220B26E100167120 /* movies2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = movies2.csv; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				242EEE2E2201EA42008DE446 /* AppDelegate.swift */,
 				242EEE302201EA42008DE446 /* ViewController.swift */,
 				242EEE322201EA42008DE446 /* Main.storyboard */,
+				24590C2F22298594007A31CD /* SearchViewController.swift */,
 				243E71AC22203E3C0049BF6B /* CollectionViewController.swift */,
 				242EEE352201EA4B008DE446 /* Assets.xcassets */,
 				242EEE372201EA4C008DE446 /* LaunchScreen.storyboard */,
@@ -345,6 +348,7 @@
 				24C4ED4C220B30FE00167120 /* csv.swift in Sources */,
 				242EEE312201EA42008DE446 /* ViewController.swift in Sources */,
 				243E71AD22203E3C0049BF6B /* CollectionViewController.swift in Sources */,
+				24590C3022298594007A31CD /* SearchViewController.swift in Sources */,
 				240B48EC220A11EB0028D056 /* CustomTabBar.swift in Sources */,
 				241541DB221C8878004E9EDD /* User.swift in Sources */,
 				24C4ED44220B25F100167120 /* Movie.swift in Sources */,
