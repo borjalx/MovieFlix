@@ -26,24 +26,18 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     
     //mostrar más información de la palícula
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //let mcs = storyboard!.instantiateViewController(withIdentifier: "detalleMovie") as! MovieCellSegue
-        
-        //let mcs = collectionView.dequeueReusableCell(withReuseIdentifier: "detalle", for: <#T##IndexPath#>) as! Movi
-        
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mcs = storyboard.instantiateViewController(withIdentifier: "detalleMovie") as! MovieCellSegue
-        
-    
-        //let mcs = collectionView.dequeueReusableCell(withReuseIdentifier: "cvitem", for: indexPath) as! MovieCollectionViewCell
+
         //asginamos la información de la peli a una Movie auxiliar
         mcs.peli = likedMovies[indexPath.row]
         //asignamos imágen de vista/no vista
-        if movies[indexPath.row].userWatched(user: mainUser) != -1 {
-            mcs.imgW = UIImage(named: "noVista")!
-        }else{
+        /*if movies[indexPath.row].userWatched(user: mainUser) != -1 {*/
             mcs.imgW = UIImage(named: "vista")!
-        }
+        /*}else{
+            mcs.imgW = UIImage(named: "noVista")!
+        }*/
         //texto especial para el botón de volver
         let backItem = UIBarButtonItem()
         backItem.title = "Go back"
@@ -75,16 +69,17 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         cell.lblWM.text = likedMovies[indexPath.row].name
         //asginamos la imagen al botón
         cell.btnWM.setImage(UIImage(named: "vista")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        //asginamos función de click al botón
-        cell.btnWM.addTarget(self, action: #selector(clickUnwatch), for: .touchUpInside)
+        /*//asginamos función de click al botón
+        cell.btnWM.addTarget(self, action: #selector(clickUnwatch), for: .touchUpInside)*/
         
         return cell
     }
     
+    /*
     //función asociada al click del botón
     @objc func clickUnwatch(sender: UIButton){
         print("Pelicula \(likedMovies[sender.tag].name) ya NO vista")
-    }
+    }*/
     
 
     override func viewDidLoad() {

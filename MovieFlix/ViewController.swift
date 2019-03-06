@@ -51,13 +51,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
          }
          }
          }
-        /*
-        if let url = URL(string: movies[indexPath.row].image){
-            var url:URL = URL(string: "https://i.imgur.com/W6IUotA.jpg")!
-            let data = try? Data(contentsOf: url)
-        celda.ivImagen.image = UIImage(data: data!)
-        }
-        */
         
         //Obtenemos la putnuacion de RT
         celda.lblRTS.text = movies[indexPath.row].rottenTomatoesScore
@@ -69,7 +62,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         //Añadimos el icono dependiendo de si ha visto la peli
         if movies[indexPath.row].userWatched(user: mainUser) == -1 {
             celda.btnWtchd.setImage(UIImage(named: "noVista")?.withRenderingMode(.alwaysOriginal), for: .normal)
-            
         } else {
             celda.btnWtchd.setImage(UIImage(named: "vista")?.withRenderingMode(.alwaysOriginal), for: .normal)
         }
@@ -123,6 +115,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         //delgemos el tableView
         tableView.delegate = self
         tableView.dataSource = self
+        
     }
     
     //Función que imprime información sobre las películas
@@ -155,6 +148,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         navigationItem.backBarButtonItem = backItem
         
         self.navigationController?.pushViewController(mcs, animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        tableView.reloadData()
     }
 
 

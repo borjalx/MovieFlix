@@ -51,6 +51,23 @@ class MovieCellSegue: UIViewController {
         
     }
     
-
+    @IBAction func unwatch(_ sender: UIButton) {
+        let n = peli?.userWatched(user: mainUser)
+        if  n != -1 {
+            print("n = \(n)")
+            
+            mainUser.watchedMvs.remove(at: n!)
+            print("película retirada de las vistas")
+            imgW = UIImage(named: "noVista")!
+            
+        }else{
+            
+            mainUser.watchedMvs.append(peli!)
+            print("película añadida a las vistas")
+            imgW = UIImage(named: "vista")!
+        }
+        movieW.setImage(imgW, for: .normal)
+    }
+    
 
 }
