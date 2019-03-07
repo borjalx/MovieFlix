@@ -111,7 +111,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        likedMovies = mainUser.watchedMvs
+        //likedMovies = mainUser.watchedMvs
         
         collectionView.reloadData()
         
