@@ -169,16 +169,31 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     //SwipeAction en cada celda del tableView
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let isWatched = watchedCategory(indexPath:indexPath)
+        
+        var iswatched:Bool
+        
+        var auxarray = [Movie]()
+        if !isSearching {
+            auxarray = movies
+        }else{
+            auxarray = filteredMovies
+        }
+        
+        if auxarray[indexPath.row].userWatched(user: mainUser) != -1 {
+            iswatched = true
+        }else{
+            iswatched = false
+        }
+        
+        let isWatched = watchedCategory(indexPath:indexPath, iswatched: iswatched)
         
         //Adjuntamos todas las opciones que necesitemos en modo de array
         return UISwipeActionsConfiguration(actions: [isWatched])
     }
     
     
-    func watchedCategory(indexPath:IndexPath) -> UIContextualAction{
-        
-        var isWatched:Bool = false
+    func watchedCategory(indexPath:IndexPath, iswatched: Bool) -> UIContextualAction{
+        //iswatched = is
         //defino la acción que voy a devolver en el método para el array de acciones
         let action = UIContextualAction(style: .normal, title: "", handler: {
             (action, view, completionHandler) in
@@ -201,15 +216,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 print("n = \(n)")
                 mainUser.watchedMvs.remove(at: n)
                 print("película retirada de las vistas")
-                isWatched = false
+                //iswatched = false
                 
             }else{
                 
                 mainUser.watchedMvs.append(peli)
                 print("película añadida a las vistas")
-                isWatched = true
+                //iswatched = true
             }
-            print("is watched = \(isWatched)")
+            print("is watched = \(iswatched)")
             //RECARGAMOS LA INFO DE LA ROW
             self.tableView.reloadRows(at: [indexPath], with: .none)
             /*RECARGAR LA INFORMACION SOLO SI CAMBIA*/
@@ -221,13 +236,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         //ESTABLEZCO EL TITULO PARA LOS DOS CASOS
         //action.title = listaRopa[indexPath.row].isLiked ? "UnHappy!" : "Happy"
-        //action.image = isWatched ? UIImage(named: "vista") : UIImage(named: "noVista")
-        action.backgroundColor =  isWatched ? UIColor.red : UIColor.purple
-        if isWatched {
-            action.backgroundColor = UIColor.red
-        }else{
-            action.backgroundColor = UIColor.purple
-        }
+        action.image = iswatched ? UIImage(named: "noVista") : UIImage(named: "vista")
+        action.backgroundColor =  iswatched ? UIColor.lightGray : UIColor.darkGray
         
         //finalmente una vez configurada la acción la retorno
         return action
