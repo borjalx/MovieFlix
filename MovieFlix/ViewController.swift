@@ -78,12 +78,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @objc func clickWatched(sender: UIButton){
         let n = movies[sender.tag].userWatched(user: mainUser)
         if n == -1 {
-            //ELIMINAR - movies[sender.tag].watched = true
             mainUser.watchedMvs.append(movies[sender.tag])
             sender.setImage(UIImage(named: "vista")?.withRenderingMode(.alwaysOriginal), for: .normal)
             print("Película \(movies[sender.tag].name) vista")
         }else{
-            //ELIMINAR - movies[sender.tag].watched = false
             mainUser.watchedMvs.remove(at: n)
             sender.setImage(UIImage(named: "noVista")?.withRenderingMode(.alwaysOriginal), for: .normal)
             print("Película \(movies[sender.tag].name) NO vista")
@@ -110,8 +108,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.navigationController?.navigationBar.tintColor = UIColor.white
         //obtenemos la información del csv
         tools.parseCSVMovie(movies: &movies)
-        //imptimimos la información de las peliculas por consola
-        //printMovies()
         //delgemos el tableView
         tableView.delegate = self
         tableView.dataSource = self

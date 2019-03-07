@@ -36,8 +36,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchBar.delegate = self
         //placeholder del searchbar
         searchBar.placeholder = "¿Qué película quieres?"
-        /*self.creatingSearhBar()
-        self.tableSettings()*/
         
     }
     
@@ -58,7 +56,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let celda = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellMovies
-        //BORRAR - celda.lblTitulo.text = movies[indexPath.row].name
         
         
         var auxarray = [Movie]()
@@ -119,10 +116,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        
-        //Opcion 4
-        /*Filtramos haciendo minúsculas los títulos para no tener problemas con las mayúsculas*/
-        //Paso 3 - Añadimos a la lista de pelis filtradas las encontradas
+        //Paso 3 - Añadimos a la lista de pelis filtradas las encontradas (filtramos haciendo minúsculas los títulos)
         filteredMovies = movies.filter({ (movie) -> Bool in
             return movie.name.lowercased().contains(searchText.lowercased())
         })
@@ -234,8 +228,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
         })
         
-        //ESTABLEZCO EL TITULO PARA LOS DOS CASOS
-        //action.title = listaRopa[indexPath.row].isLiked ? "UnHappy!" : "Happy"
+        //Alternamos entre imágenes con sus colores
         action.image = iswatched ? UIImage(named: "noVista") : UIImage(named: "vista")
         action.backgroundColor =  iswatched ? UIColor.lightGray : UIColor.darkGray
         

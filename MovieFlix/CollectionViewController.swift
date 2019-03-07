@@ -32,12 +32,8 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
 
         //asginamos la información de la peli a una Movie auxiliar
         mcs.peli = likedMovies[indexPath.row]
-        //asignamos imágen de vista/no vista
-        /*if movies[indexPath.row].userWatched(user: mainUser) != -1 {*/
-            mcs.imgW = UIImage(named: "vista")!
-        /*}else{
-            mcs.imgW = UIImage(named: "noVista")!
-        }*/
+        mcs.imgW = UIImage(named: "vista")!
+
         //texto especial para el botón de volver
         let backItem = UIBarButtonItem()
         backItem.title = "Go back"
@@ -87,7 +83,6 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         //modificamos el color de fondo del navigationController
         self.navigationController?.navigationBar.barTintColor = UIColor.black
         //likedMovies = mainUser.watchedMvs
-        //print("likedMovies = all movies")
         print("likedMovies count = \(likedMovies.count)")
         //le asginamos valores a los componentes que tienen la información del user
         ivUser.image = UIImage(named: mainUser.picture)
@@ -111,7 +106,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        //likedMovies = mainUser.watchedMvs
+        likedMovies = mainUser.watchedMvs
         
         collectionView.reloadData()
         
